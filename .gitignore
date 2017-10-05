@@ -1,0 +1,7 @@
+training_data/
+output_graph/
+inception/
+bottlenecks/
+dummy_data/
+test/
+training_summaries/
