@@ -5,3 +5,4 @@ bottlenecks/
 dummy_data/
 test/
 training_summaries/
+*.pb
