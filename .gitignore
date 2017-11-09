@@ -1,5 +1,6 @@
 training_data/
 training_data_old/
+test/
 output_graph/
 inception/
 bottlenecks/
@@ -7,3 +8,4 @@ dummy_data/
 test/
 training_summaries/
 *.pb
+*.JPG
