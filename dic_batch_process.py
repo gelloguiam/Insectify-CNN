@@ -4,8 +4,8 @@ import tensorflow as tf
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-subjects = ['bee', 'beetle', 'butterfly', 'cicada', 'cockroach', 'dragonfly', 'fly', 'grasshopper', 'mantis', 'wasp']
-labels = list(subjects)
+subject = sys.argv[1]
+item = sys.argv[2]
 
 def get_filename(x, path):
     filename = ""
@@ -13,9 +13,13 @@ def get_filename(x, path):
         filename = "0" + str(x)
     else:
         filename = str(x)
-    return path + filename + ".JPG"
+    srcname = path + filename + ".JPG"
+    print srcname
+    return srcname
 
 def insect_identifier(filename, subject):
+    print path
+
     # Read in the image_data
     image_data = tf.gfile.FastGFile(filename, 'rb').read()
 
@@ -40,8 +44,6 @@ def insect_identifier(filename, subject):
         top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
 
         save_name = "" + subject + ".csv"
-        res = open(save_name,'w+')
-        res.close()
         res = open(save_name,'a+')
         i = 0
         for node_id in top_k:
@@ -54,10 +56,5 @@ def insect_identifier(filename, subject):
 
         res.close()
 
-def process(subject):
-    path = "test/" + subject + "/test"
-    for x in range(1, 16):
-        insect_identifier(get_filename(x, path), subject)
-
-for label in labels:
-    process(label)
+path = "test/" + subject + "/test" + item + ".JPG"
+insect_identifier(path, subject)
